@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../../assets/favicon/site.webmanifest">
+    <title>Galinhao - WEBApp </title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- style -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <!-- moment js -->
+    <script src="../../assets/js/moment.js"></script>
+</head>
+
+<body>
+    <!-- navbar top -->
+    <nav style="position: relative; width: auto; height: 65px; background-color: #000;">
+        <div class="nav-wrapper">
+            <a href="#" data-target="slide-out" class="sidenav-trigger" style="display: block;"><i
+                    class="material-icons">menu</i></a>
+            <span class="right" style="margin-right: 5%;">Checkout das Informações do cliente</span>
+        </div>
+    </nav>
+    <!-- fim navbar top -->
+
+    <!-- sidenav -->
+    <ul id="slide-out" class="sidenav" style="background-color: currentcolor;">
+        <li>
+            <div class="user-view" style="height:200px;">
+                <div class="background">
+                    <img style="width: 100%; height: max-content;" src="../../assets/image/logo.png">
+                </div>
+            </div>
+        </li>
+        <li><a style="color: #fff;" href="/">Home</a></li>
+        <li><a style="color: #fff;" href="/category">Categorias</a></li>
+        <li><a style="color: #fff;" href="/promotions">Promoções</a></li>
+        <li>
+            <div class="divider" style="background-color: hotpink;"></div>
+        </li>
+        <li><a class="subheader" style="color: #fff;">+ informações</a></li>
+        <li><a class="waves-effect" style="color: #fff;" href="/faq">FAQ</a></li>
+        <li><a class="waves-effect" style="color: #fff;" href="/terms-of-use">Termos de uso</a></li>
+        <div class="col s12 m12 l12" style="color: #fff; padding: 10%;">Posto 1002 |Posto 1002 | M B R Comercial LTDA <br> CNPJ: 70.313.598/0001-54 <br> Natal-RN Atendimento de segunda a Domingos 24H <br> Somos Delivery & Drivethru.</div>
+
+    </ul>
+    <!-- fim sidenav -->
+
+    <!-- container -->
+    <div id="app" class="container" style=" max-width: none; width: 90%; margin-top: 5%; ">
+
+
+        <div class="row" style="margin-top:10%; margin-bottom: 40%">
+            <div class="col s12">
+                <h6>Qual será o serviço ?</h6>
+                <p>Selecione a opção abaixo, após sera redirecionado para ultima etapa para finalizar do pedido pedido.</p>
+            </div>
+            <div class="col s12 m12 l12">
+                <div class="col s12 m12 l12" style="margin-bottom: 10%; margin-top: 10%;">
+                    <p align="center">
+                        <a href="javascript:void(0)"><i style="color: grey;" v-on:click="select_type_order('DriveThru', true)" class="medium material-icons drivethru">drive_eta</i></a>
+                    </p>
+                    <p align="center"> DriveTru</p align="center">
+                </div>
+                <div class="col s12 m12 l12">
+                    <p align="center">
+                        <a href="javascript:void(0)"><i style="color: grey;" v-on:click="select_type_order('Delivery' , false)" class="medium material-icons delivery">directions_bike</i></a>
+                        <p align="center"> Delivery</p>
+                </div>
+                <div class="col s12 m12 l12" style=" margin-top: 10%;">
+                    <p align="center">
+                        <a href="/checkout">Volta ao carrinho de compras (checkout)</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- menu -->
+    <div class="fixed-action-btn toolbar direction-top">
+        <a class="btn-floating btn-large green" title="Guia rápido">
+            <i class="large material-icons">dashboard</i>
+        </a>
+        <ul>
+            <li class="waves-effect waves-light"><a href="/"><i class="material-icons">home</i></a></li>
+            <li class="waves-effect waves-light"><a href="/checkout"><i class="material-icons">local_grocery_store</i></a></li>
+            <li class="waves-effect waves-light"><a href="/promotions"><i class="material-icons">monetization_on</i></a></li>
+            <li class="waves-effect waves-light"><a href="/category"><i class="material-icons">widgets</i></a></li>
+            <li class="waves-effect waves-light"><a href="/finish/waiting/"><i class="material-icons">content_paste</i></a></li>
+        </ul>
+    </div>
+    <!-- menu -->
+
+    <!-- fim container -->
+    <footer class="page-footer " style=" background-color: #232323; ">
+        <div class="container ">
+            <div class="row">
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <img src="../../assets/image/imgpay.png" style="width: 100%; filter: grayscale(100%);" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright ">
+            <div class="container ">
+                © 2020 todos os direitos resevados.
+                <span class=" grey-text text-lighten-4 right "> Desenvolvido por <a class=" grey-text text-lighten-4 "
+                        target="_blank " href="https://brenomirandaster.com.br ">Breno Miranda</a></span>
+            </div>
+        </div>
+    </footer>
+
+
+    <script defer src="/__/firebase/7.12.0/firebase-app.js "></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.12.0/firebase-auth.js "></script>
+    <script defer src="/__/firebase/7.12.0/firebase-database.js "></script>
+    <script defer src="/__/firebase/7.12.0/firebase-messaging.js "></script>
+    <script defer src="/__/firebase/7.12.0/firebase-storage.js "></script>
+    <script defer src="/__/firebase/7.12.0/firebase-firestore.js "></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js "></script>
+
+    <!-- vue js  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+    <!-- jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js " integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin=" anonymous "></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js "></script>
+    <!-- main -->
+    <script defer src="main-finish-typeorder.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            $('.sidenav').sidenav();
+            $('.fixed-action-btn').floatingActionButton({
+                toolbarEnabled: true
+            });
+        });
+    </script>
+</body>
+
+</html>

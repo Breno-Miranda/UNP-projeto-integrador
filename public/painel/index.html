@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../assets/favicon/site.webmanifest">
+    <title>Galinhao - WEBApp </title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- fonts google -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli" />
+    <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Quicksand' type='text/css' />
+    <!-- link datatable -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.material.min.css">
+    <!-- style-painel -->
+    <link rel="stylesheet" href="../../assets/css/style-painel.css">
+    <!-- moment js -->
+    <script src="../../assets/js/moment.js"></script>
+</head>
+
+<body>
+    <nav style="background-color: #000;">
+        <div class="nav-wrapper">
+            <a href="#" data-target="slide-out" class="sidenav-trigger" style="display: block;"><i class="material-icons">menu</i></a>
+            <a href="#" class="brand-logo center">Painel de Controle</a>
+        </div>
+    </nav>
+
+    <ul id="slide-out" class="sidenav">
+        <li>
+            <div class="user-view" style="height:200px;">
+                <div class="background">
+                    <img style="width: 100%; height: max-content;" src="../assets/image/logo.png">
+                </div>
+            </div>
+        </li>
+        <li><a href="/painel">Home</a></li>
+        <li><a href="/painel/requests?section=section-list">Pedidos</a></li>
+        <li><a href="/painel/products?section=section-list">Produtos</a></li>
+        <li><a href="#" onclick="signOut()">Sair do sistema</a></li>
+        <li>
+            <div class="divider" style="background-color: hotpink;"></div>
+        </li>
+    </ul>
+
+    <div id="app" class="container" style="padding: 1%;">
+        <div class="row">
+
+
+            <div class="col s6 m3 l3">
+                <a href="/painel">
+                    <div class="card-panel grey lighten-5 z-depth-1">
+                        <div class="row valign-wrapper">
+                            <div class="col s12">
+                                <i class="material-icons"> home</i>
+                            </div>
+                            <div class="col s12">
+                                <span class="black-text">Principal
+                      </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- <div class="col s6 m3 l3">
+                <a href="users?section=section-list">
+                    <div class="card-panel grey lighten-5 z-depth-1">
+                        <div class="row valign-wrapper">
+                            <div class="col s12">
+                                <i class="material-icons"> person</i>
+                            </div>
+                            <div class="col s12">
+                                <span class="black-text">Usuários
+                      </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div> -->
+
+            <div class="col s6 m3 l3">
+                <a href="categorys?section=section-list">
+                    <div class="card-panel grey lighten-5 z-depth-1">
+                        <div class="row valign-wrapper">
+                            <div class="col s12">
+                                <i class="material-icons"> apps</i>
+                            </div>
+                            <div class="col s12">
+                                <span class="black-text">Categorias
+                      </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col s6 m3 l3">
+                <a href="requests?section=section-list">
+                    <div class="card-panel grey lighten-5 z-depth-1">
+                        <div class="row valign-wrapper">
+                            <div class="col s12">
+                                <i class="material-icons"> attach_money</i>
+                            </div>
+                            <div class="col s12">
+                                <span class="black-text">
+                      Ordens
+                      </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col s6 m3 l3">
+                <a href="products?section=section-list">
+                    <div class="card-panel grey lighten-5 z-depth-1">
+                        <div class="row valign-wrapper">
+                            <div class="col s12">
+                                <i class="material-icons"> business_center</i>
+                            </div>
+                            <div class="col s12">
+                                <span class="black-text">
+                       Produtos
+                      </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- <div class="col s6 m3 l3">
+                <a href="customer?section=section-list">
+                    <div class="card-panel grey lighten-5 z-depth-1">
+                        <div class="row valign-wrapper">
+                            <div class="col s12">
+                                <i class="material-icons"> contacts</i>
+                            </div>
+                            <div class="col s10">
+                                <span class="black-text">
+                       Clientes
+                      </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div> -->
+        </div>
+
+
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <h5>Painel de atendimento</h5>
+                <p>Abaixo exite a listagem dos pedido encomendados pelo nossos clientes.Para melhor atendimento, ao lado tem a preparação dos pedido e a ordem de chegada dos pedido.</p>
+            </div>
+
+            <!-- <div class="col s4 m4 l4 ">
+                <a style=" padding: 17%; height: 9pc; width: 100%;" class="waves-effect waves-light btn modal-trigger" href="#modal1" v-on:click="getordersPreparation">Painel de Preparação</a>
+            </div> -->
+        </div>
+        <div class="row">
+
+            <div class="col s12 m12 l12" style="height: 300px; overflow: auto; margin-bottom: 5%; border-bottom:  5px solid tomato;">
+                <h6 style="color: tomato;">Você tem Pedido em Aberto</h6>
+                <table class="striped centered" style="padding: 5%;">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Cliente</th>
+                            <th>Tipo de Order</th>
+                            <th>Data e Hora</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodytable">
+                        <tr v-for="(item, index) in orders">
+                            <td>{{item.uid}}</td>
+                            <td>{{item.full_name}}</td>
+                            <td>{{item.type_order}}</td>
+                            <td>{{item.date_time}}</td>
+                            <td>{{ formatPrice(item.total)}}</td>
+                            <td>{{item.status}}</td>
+                            <td> <a class="btn modal-trigger" href="#modal1" v-on:click="getorderPreparation(item)">Preparar</a></td>
+                        </tr>
+                        <tr v-if="orders.length == 0">
+                            <td align="center" colspan="7">Sem informações de pedidos NOVOS</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col s12 m12 l12" style="height: 300px; overflow: auto; margin-bottom: 5%; border-bottom:  5px solid tomato;">
+                <h6 style="color: tomato;">Você tem Pedido para preparação</h6>
+                <table class="striped centered" style="padding: 5%;">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Cliente</th>
+                            <th>Tipo de Order</th>
+                            <th>Data e Hora</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodytable">
+                        <tr v-for="(item, index) in ordersPreparations">
+                            <td>{{item.uid}}</td>
+                            <td>{{item.full_name}}</td>
+                            <td>{{item.type_order}}</td>
+                            <td>{{item.date_time}}</td>
+                            <td>{{ formatPrice(item.total)}}</td>
+                            <td>{{item.status}}</td>
+                            <td> <a class="btn modal-trigger" href="#modal1" v-on:click="getorderPreparation(item)">Preparar</a></td>
+                        </tr>
+                        <tr v-if="ordersPreparations.length == 0">
+                            <td align="center" colspan="7">Sem informações de pedidos PREPARAÇÃO</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <div v-for="(item, index) in prepraretionOrders">
+                    <div id="print">
+                        <h6 style="color: tomato;">Você está Visualizando o pedido com o ticket "{{item.uid}}"</h6>
+                        <h6>Informações do Pedido</h6>
+                        <hr> ticket: {{ item.uid}} <br> Cliente: {{ item.full_name}} <br>Data e Hora: {{item.date_time}} <br>
+                        <hr>
+                        <h6>informações dos itens</h6>
+                        <div v-for="item_itens in item.itens">
+                            <p align="center">
+                                <img v-bind:src="item_itens.url_image" width="50" alt="">
+                            </p>
+                            <p align="center">{{item_itens.title}} <br> Quantidade: <strong>{{item_itens.amount}}</strong> <br> Preço (UND):{{item_itens.price}} </p>
+                        </div>
+                        <br>
+                        <h6>Informações de Entrega ( {{item.type_order}} )</h6>
+                        <hr>
+                        <span v-show="item.type_order == 'DriveThru'"> <br> Nome completo: {{item.full_name}}<br> Placa: {{item.car_placa}} <br> whatsapp: {{item.whatsapp}}</span>
+                        <span v-show="item.type_order == 'Delivery'"> <br> Nome completo: {{item.full_name}}<br> whatsapp: {{item.whatsapp}} Endereço: {{item.address.address }}<br> N° casa : {{item.address.number_house }} <br> Complemento: {{item.address.complement }}   <br> Ponto de Referencia: {{item.address.reference }}   <br> Bairro: {{item.address.neighborhood}}   <br> Estado: {{item.address.state }}  </span>
+                        <hr>
+                        <span>Total: {{ formatPrice(item.total)}}<br>  Desconto: {{ formatPrice(item.discount)}} <br> SubTotal: {{ formatPrice(item.subtotal)}} <br> Forma de Pagamento: <span v-for="(item_form_payment) in item.form_payment">{{item_form_payment}}</span><br>                        Troco para: {{ formatPrice(item.changer) }} - {{ formatPrice(item.subtotal) }} = {{ formatPrice(item.changer - item.subtotal)}} </span>
+                    </div> <br><br>
+                    <a style="width: 100%; margin-top: 10px" v-on:click="finalizarOrder(item)" target="_blank" v-bind:href="'https://wa.me/5584'+ item.whatsapp+'?text=📦 Seu Pedido estar pronto ➡ https://delivery-post.web.app/finish/waiting/ ➡ Codigo -'+ item.uid +' Seu pedido está indo ate você! Obrigado, volte sempre.'"
+                        class="modal-close waves-effect waves-light btn">Finalizar Preparação</a>
+                    <a style="width: 100%; margin-top: 5px;" class="modal-close waves-effect waves-light btn red" v-on:click="cancelarOrder(item)">Cancelar Pedido</a>
+                    <a style="width: 100%; margin-top: 5px;" v-bind:href="'https://wa.me/5584'+ item.whatsapp" target="_blank" class="modal-close waves-effect waves-light btn blue">Falar com o cliente</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m12 l12" style="height: 300px; overflow: auto;margin-bottom: 5%; border-bottom:  5px solid tomato;">
+                <h6 style="color: tomato;">Todos seus Pedidos Finalizados e Cancelados</h6>
+                <table class="striped centered" style="padding: 5%;">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Cliente</th>
+                            <th>Tipo de Order</th>
+                            <th>Data e Hora / Aberto</th>
+                            <th>Data e Hora / Finalizado</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodytable">
+                        <tr v-for="(item, index) in ordersFinishs.slice().reverse()">
+                            <td>{{item.uid}}</td>
+                            <td>{{item.full_name}}</td>
+                            <td>{{item.type_order}}</td>
+                            <td>{{item.date_time}}</td>
+                            <td>{{item.date_time}}</td>
+                            <td>{{ formatPrice(item.total)}}</td>
+                            <td>{{item.status}}</td>
+                        </tr>
+                        <tr v-if="ordersFinishs.length == 0">
+                            <td align="center" colspan="7">Sem informações de pedidos FINALIZADOS</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer class="page-footer" style="background-color: #000;">
+        <div class="container">
+            <div class="row">
+                <div class="col l12 s12">
+                    <h5 class="white-text">Área interna</h5>
+                    <p class="grey-text text-lighten-4">Nesta área se encontra informações de pedidos solicitados e efetuar o cadastro, edição é exclusão de produtos, categoria e orders de pedidos.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2020 todos os direitos resevados
+                <span class=" grey-text text-lighten-4 right"> Feito com muito <i class="tiny material-icons"> favorite</i> por <a class=" grey-text text-lighten-4" target="_blank" href="https://brenomirandaster.com.br"> Breno Miranda</a></span>
+            </div>
+        </div>
+    </footer>
+    <!-- alert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.2.1/buzz.min.js"></script>
+
+
+    <script defer src="/__/firebase/7.12.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.12.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.12.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/7.12.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/7.12.0/firebase-storage.js"></script>
+    <script defer src="/__/firebase/7.12.0/firebase-firestore.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <!-- vue js  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- main -->
+    <script defer src="main-painel.js"></script>
+    <!-- rules -->
+    <script async src="rules.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.sidenav').sidenav();
+            $('.collapsible').collapsible();
+            $('.fixed-action-btn').floatingActionButton({
+                toolbarEnabled: true
+            });
+            $('.modal').modal();
+        });
+    </script>
+</body>
+
+</html>

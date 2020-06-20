@@ -1,0 +1,421 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../../assets/favicon/site.webmanifest">
+    <title>Galinhao - WEBApp </title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- link datatable -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.material.min.css">
+    <!-- fonts google -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli" />
+    <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Quicksand' type='text/css' />
+    <!-- style-painel -->
+    <link rel="stylesheet" href="../../assets/css/style-painel.css">
+    <!-- moment js -->
+    <script src="../../assets/js/moment.js"></script>
+</head>
+
+<body>
+
+    <nav style="background-color: #000;">
+        <div class="nav-wrapper">
+            <a href="#" data-target="slide-out" class="sidenav-trigger" style="display: block;"><i class="material-icons">menu</i></a>
+            <a href="#" class="brand-logo center">Painel de Controle</a>
+        </div>
+    </nav>
+
+    <ul id="slide-out" class="sidenav">
+        <li>
+            <div class="user-view" style="height:200px;">
+                <div class="background">
+                    <img style="width: 100%; height: max-content;" src="../../assets/image/logo.png">
+                </div>
+            </div>
+        </li>
+        <li><a href="/painel">Home</a></li>
+        <li><a href="/painel/requests?section=section-list">Pedidos</a></li>
+
+        <li><a href="/painel/products?section=section-list">Produtos</a></li>
+
+        <li><a href="#" onclick="signOut()">Sair do sistema</a></li>
+        <li>
+            <div class="divider" style="background-color: hotpink;"></div>
+        </li>
+
+    </ul>
+
+    <div id="app" class="container" style="padding: 1%;">
+
+        <div class="row">
+            <div class="col s6 m3 l3">
+                <a href="/painel/">
+                    <div class="card-panel grey lighten-5 z-depth-1">
+                        <div class="row valign-wrapper">
+                            <div class="col s12">
+                                <i class="material-icons"> apps</i>
+                            </div>
+                            <div class="col s12">
+                                <span class="black-text">
+                                    Pagina inicial
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col s6 m3 l3">
+                <a href="/painel/requests/?section=section-list">
+                    <div class="card-panel grey lighten-5 z-depth-1">
+                        <div class="row valign-wrapper">
+                            <div class="col s12">
+                                <i class="material-icons"> menu</i>
+                            </div>
+                            <div class="col s12">
+                                <span class="black-text">
+                                    Listagem de Pedidos
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col s6 m3 l3">
+                <a href="/painel/requests/?section=section-form">
+                    <div class="card-panel grey lighten-5 z-depth-1">
+                        <div class="row valign-wrapper">
+                            <div class="col s12">
+                                <i class="material-icons"> add</i>
+                            </div>
+                            <div class="col s12">
+                                <span class="black-text">
+                                    Criar novo Pedidos
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col s12">
+
+                <div id="section-list">
+                    <h6>Listagem de Pedidos</h6>
+                    <p>abaixo encontra-se as informações dos Pedidos.Na coluna <strong>action</strong> encontra-se eventos sobre o usuário desejado.</p>
+                    <table id="tableQuery" class="striped responsive-table" width="100%"></table>
+                </div>
+
+                <div id="section-form">
+                    <form @submit="finalize" method="post">
+                        <h6>Formulario Pedidos</h6>
+                        <p>Abaixo se encontra o formulário de Pedidos, com ele pode cadastrar e atualizar as informações.</p>
+                        <div class="row">
+                            <div class="s12">
+                                <div class="input-field col s12">
+                                    <input id="full_name" type="text" class="validate" v-model="full_name">
+                                    <label for="full_name">Nome completo</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="car_placa" type="text" class="validate" v-model="car_placa">
+                                <label for="car_placa">Placa do Veiculo</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="s12">
+                                <div class="input-field col s12">
+                                    <input id="whatsapp" type="text" class="validate" v-model="whatsapp">
+                                    <label for="whatsapp">N° Celular (whatsapp)</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="s12">
+                                <div class="input-field col s12">
+                                    <input id="type_order" type="text" class="validate" v-model="type_order">
+                                    <label for="type_order">Tipo de Pedido</label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <ul class="collapsible">
+                            <li>
+                                <div class="collapsible-header">Endereço do tipo "Delivery"</div>
+                                <div class="collapsible-body">
+
+                                    <div class="row">
+                                        <div class="s12">
+                                            <div class="input-field col s12">
+                                                <input id="address" type="text" class="validate" v-model="address.zipcode">
+                                                <label for="address">CEP</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="s12">
+                                            <div class="input-field col s12">
+                                                <input id="address" type="text" class="validate" v-model="address.address">
+                                                <label for="address">Endereço</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="s12">
+                                            <div class="input-field col s12">
+                                                <input id="address" type="text" class="validate" v-model="address.complement">
+                                                <label for="address">complemento</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="s12">
+                                            <div class="input-field col s12">
+                                                <input id="address" type="text" class="validate" v-model="address.reference">
+                                                <label for="address">Referencia</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="s12">
+                                            <div class="input-field col s12">
+                                                <input id="address" type="text" class="validate" v-model="address.number_house">
+                                                <label for="address">°N Casa</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="s12">
+                                            <div class="input-field col s12">
+                                                <input id="address" type="text" class="validate" v-model="address.neighborhood">
+                                                <label for="address">Bairro</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="row">
+                                        <div class="s12">
+                                            <div class="input-field col s12">
+                                                <input id="address" type="text" class="validate" v-model="address.state">
+                                                <label for="address">Estado</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </li>
+
+                        </ul>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="date_time" type="text" class="validate" value="0" v-model="date_time">
+                                <label for="date_time"> Data time</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="date_time_finish" type="text" class="validate" value="0" v-model="date_time_finish">
+                                <label for="date_time_finish"> Data Finalização</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select id="status" v-model="status">
+                                <option value="" disabled selected>Escolha uma opção</option>
+                                <option value="Aberto">Aberto</option>
+                                <option value="Preparando">Preparando</option>
+                                <option value="Finalizado">Finalizado</option>
+                                </select>
+                                <label>Status Pedido</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="s12">
+                                <div class="input-field col s12">
+                                    <input id="total" type="text" minlength="1" maxlength="9" class="validate" v-model="total">
+                                    <label for="total">Total</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="s12">
+                                <div class="input-field col s12">
+                                    <input id="subtotal" type="text" minlength="1" maxlength="9" class="validate" v-model="subtotal">
+                                    <label for="subtotal">subtotal</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="s12">
+                                <div class="input-field col s12">
+                                    <input id="discount" type="text" minlength="1" maxlength="9" class="validate" v-model="discount">
+                                    <label for="discount">Desconto</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="s12">
+                                <div class="input-field col s12">
+                                    <input id="changer" type="text" minlength="1" maxlength="9" class="validate" v-model="changer">
+                                    <label for="changer">Troco</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select id="form_payment" v-model="form_payment" multiple>
+                                <option value="" disabled selected>Escolha uma opção</option>
+                                <option value="Credito & Debito">Credito & Debito</option>
+                                <option value="A vista">A vista</option>
+                                </select>
+                                <label>Forma de pagamento</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="userPreparation" v-model="userPreparation" type="text" class="validate">
+                                <label for="userPreparation">Usuário Preparador</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <ul class="collapsible">
+                                <li>
+                                    <div class="collapsible-header">Lista dos Itens Pedidos</div>
+                                    <div class="collapsible-body">
+                                        <table>
+                                            <tr>
+                                                <td>Imagem</td>
+                                                <td>Descrição</td>
+                                                <td>Preço</td>
+                                                <td>Quantidade</td>
+                                                <td>Total</td>
+                                                <td>Subtotal</td>
+                                            </tr>
+                                            <tr v-for="item in itens">
+                                                <td>
+                                                    <img width="30" :src="item.url_image" alt="">
+                                                </td>
+                                                <td>
+                                                    <input type="text" v-model="item.title" disabled>
+                                                </td>
+                                                <td>
+                                                    <input type="number" step=".01" v-model="item.price" disabled>
+                                                </td>
+                                                <td>
+                                                    <input type="number" v-model="item.amount" v-on:keyup="Recaculation(item)" v-on:change="Recaculation(item)">
+                                                </td>
+                                                <td>
+                                                    <input type="number" step=".01" v-model="item.total" disabled>
+                                                </td>
+                                                <td>
+                                                    <input type="number" step=".01" v-model="item.subtotal" disabled>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="row">
+                            <div class="s12">
+                                <label>
+                                        <input name="activate" type="checkbox" id="activate" v-model="activate" value="false" >
+                                        <span>Ativo & inativo</span>
+                                        </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button class="waves-effect waves-light btn" type="submit">Finalizar</button>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="page-footer" style="background-color: #000;">
+        <div class="container">
+            <div class="row">
+                <div class="col l12 s12">
+                    <h5 class="white-text">Área interna</h5>
+                    <p class="grey-text text-lighten-4">Nesta área se encontra informações de pedidos solicitados e efetuar o cadastro, edição é exclusão de produtos, categoria e orders de pedidos.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2020 todos os direitos resevados
+                <span class=" grey-text text-lighten-4 right"> Feito com muito <i class="tiny material-icons"> favorite</i> por <a class=" grey-text text-lighten-4" target="_blank" href="https://brenomirandaster.com.br"> Breno Miranda</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <script defer src="/__/firebase/7.12.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.12.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.12.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/7.12.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/7.12.0/firebase-storage.js"></script>
+    <script defer src="/__/firebase/7.12.0/firebase-firestore.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <!-- vue js  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- main -->
+    <script defer src="main-requests.js"></script>
+    <!-- rules -->
+    <script defer src="../rules.js"></script>
+    <!-- jquery datatble -->
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.material.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.sidenav').sidenav();
+            $('select').formSelect();
+            $('.modal').modal();
+            $('.collapsible').collapsible();
+        });
+    </script>
+</body>
+
+</html>

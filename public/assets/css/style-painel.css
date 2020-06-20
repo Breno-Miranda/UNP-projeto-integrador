@@ -1,0 +1,123 @@
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+
+h1 {
+    font-family: Quicksand;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px;
+}
+
+h3 {
+    font-family: Quicksand;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 22px;
+}
+
+h6 {
+    font-family: Quicksand;
+    font-size: 17px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 22px;
+}
+
+h5 {
+    font-family: Quicksand;
+    font-size: 19px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 22px;
+}
+
+p {
+    font-family: Muli;
+    font-size: 16px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+blockquote {
+    font-family: Quicksand;
+    font-size: 17.5px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 25px;
+}
+
+pre {
+    font-family: Quicksand;
+    font-size: 13px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 18.5714px;
+}
+
+
+/* INPUT */
+
+input {
+    text-transform: uppercase
+}
+
+
+/* CARD PAINEL */
+
+.card-panel {
+    height: 120px !important;
+}
+
+
+/* SECTION PAGE */
+
+#section-list {
+    display: none;
+}
+
+#section-form {
+    display: none;
+}
+
+#section-logs {
+    display: none;
+}
+
+#section-detail {
+    display: none;
+}
+
+
+/* TABLES */
+
+.dataTables_wrapper {
+    font-family: Quicksand;
+    font-size: 13px;
+    direction: ltr;
+    position: relative;
+    clear: both;
+    *zoom: 1;
+    zoom: 1;
+}
+
+
+/* icon category */
+
+.selected-icon {
+    color: #4ff934;
+}
